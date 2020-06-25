@@ -2,7 +2,6 @@
     "variables":{
             "service_account_key_file": "",
             "subnet_id": "",
-            "source_image_id": "",
             "folder_id": ""
     },
     "builders": [
@@ -11,7 +10,6 @@
             "service_account_key_file": "{{user `service_account_key_file`}}",
             "folder_id": "{{user `folder_id`}}",
             "source_image_family": "ubuntu-1604-lts",
-            "source_image_id": "{{user `source_image_id`}}",
             "image_name": "reddit-base-{{timestamp}}",
             "image_family": "reddit-base",
             "ssh_username": "ubuntu",
