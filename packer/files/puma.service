@@ -1,0 +1,13 @@
+[Unit]
+Description=Monolith Reddir Service
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/puma --dir /opt/reddit --pidfile /opt/reddit/puma.pid
+
+TimeoutSec=30
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

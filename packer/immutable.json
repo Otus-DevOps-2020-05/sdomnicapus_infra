@@ -1,0 +1,58 @@
+{
+    "variables":{
+            "service_account_key_file": "",
+            "subnet_id": "",
+            "source_image_id": "",
+            "folder_id": ""
+    },
+    "builders": [
+        {
+            "type": "yandex",
+            "service_account_key_file": "{{user `service_account_key_file`}}",
+            "folder_id": "{{user `folder_id`}}",
+            "source_image_family": "ubuntu-1604-lts",
+	    "source_image_id": "{{user `source_image_id`}}",
+            "image_name": "reddit-full-{{timestamp}}",
+            "image_family": "reddit-fill",
+            "ssh_username": "ubuntu",
+            "platform_id": "standard-v1",
+            "subnet_id": "{{user `subnet_id`}}",
+	    "use_ipv4_nat": true
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/install_ruby.sh",
+	    "pause_before": "10s",
+            "execute_command": "sudo {{.Path}}"
+        },
+        {
+            "type": "shell",
+            "script": "scripts/install_mongodb.sh",
+	    "pause_before": "10s",
+            "execute_command": "sudo {{.Path}}"
+        },
+        {
+            "type": "shell",
+            "script": "scripts/deploy.sh",
+            "pause_before": "10s",
+            "execute_command": "sudo {{.Path}}"
+        },
+        {
+            "type": "file",
+            "source": "files/puma.service",
+            "destination": "/home/ubuntu/"
+        },
+        {
+            "type": "shell",
+            "inline": "sudo cp /home/ubuntu/puma.service /etc/systemd/system/"
+        },
+        {
+            "type": "shell",
+            "script": "scripts/start_service_puma.sh",
+            "execute_command": "sudo {{.Path}}"
+        }
+    ]
+}
+
