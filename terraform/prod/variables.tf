@@ -27,4 +27,12 @@ variable service_account_key_file {
 variable private_key_path {
   description = "path to private key"
 }
+variable app_disk_image {
+  description = "Disk image for reddit app"
+  default     = "reddit-app-base"
+}
+variable db_disk_image {
+  description = "Disk image for reddit app"
+  default     = "reddit-db-base"
+}
 
