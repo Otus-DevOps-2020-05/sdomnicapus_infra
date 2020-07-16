@@ -35,4 +35,9 @@ variable db_disk_image {
   description = "Disk image for reddit app"
   default     = "reddit-db-base"
 }
-
+variable s3_backet_key_id{
+  description = "storage state tf key id"
+}
+variable s3_backet_secret{
+  description = "storage state tf secret"
+}
