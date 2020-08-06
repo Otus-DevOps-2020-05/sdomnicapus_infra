@@ -29,11 +29,11 @@ variable private_key_path {
 }
 variable app_disk_image {
   description = "Disk image for reddit app"
-  default     = "reddit-app-base"
+  default     = "reddit-app-base-ansible"
 }
 variable db_disk_image {
   description = "Disk image for reddit app"
-  default     = "reddit-db-base"
+  default     = "reddit-db-base-ansible"
 }
 variable s3_backet_key_id{
   description = "storage state tf key id"
