@@ -12,8 +12,8 @@ terraform init -backend=false
 terraform validate
 tflint
 
-cd /srv/ansible/playbooks
-ansible-lint
+cd /srv/ansible
+ansible-lint playbooks/site.yml --exclude=roles/jdauphant.nginx
 
 
 
