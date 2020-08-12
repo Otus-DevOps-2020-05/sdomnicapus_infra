@@ -2,7 +2,7 @@ db_host: 192.168.17.15
 nginx_sites:
   default:
     - listen 80
-    - server_name "reddit"
+    - server_name 10.10.10.20
     - location / {
         proxy_pass http://127.0.0.1:9292;
       }

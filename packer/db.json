@@ -1,7 +1,6 @@
 {
     "variables":{
             "service_account_key_file": "",
-            "subnet_id": "",
             "folder_id": ""
     },
     "builders": [
@@ -10,7 +9,7 @@
             "service_account_key_file": "{{user `service_account_key_file`}}",
             "folder_id": "{{user `folder_id`}}",
             "source_image_family": "ubuntu-1604-lts",
-            "image_name": "reddit-db-base-ansible",
+            "image_name": "reddit-db-base-ansible-pb",
             "ssh_username": "ubuntu",
             "platform_id": "standard-v1",
 	    "use_ipv4_nat": true
@@ -19,7 +18,9 @@
     "provisioners": [
         {
             "type": "ansible",
-            "playbook_file": "ansible/playbooks/packer_db.yml"
+            "playbook_file": "ansible/playbooks/packer_db.yml",
+            "extra_arguments": [ "-t", "install" ],
+            "ansible_env_vars": ["ANSIBLE_ROLES_PATH={{ pwd }}/ansible/roles"]
         }
     ]
 }
