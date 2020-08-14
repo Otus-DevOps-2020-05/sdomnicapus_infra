@@ -1,16 +1,6 @@
 ---
-- name: Install Ruby && Bundler
+- name: install/config app
   hosts: all
   become: true
-  tasks:
-  - name: Update APT package manager repositories cache
-    apt:
-      upgrade: yes
-      update_cache: yes
-
-  - name: Install ruby and rubygems and required packages
-    apt: "name={{ item }} state=present"
-    with_items:
-      - ruby-full
-      - ruby-bundler
-      - build-essential
+  roles:
+    - app

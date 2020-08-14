@@ -1,0 +1,15 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:    
+    name: virtualbox 
+platforms:
+  - name: instance
+    box: ubuntu/xenial64
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8
